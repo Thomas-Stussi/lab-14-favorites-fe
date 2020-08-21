@@ -1,7 +1,7 @@
 /* eslint-disable no-throw-literal */
 import request from 'superagent';
 
-const URL = "http://localhost:3000";
+const URL = "http://localhost:3000" || "https://mysterious-retreat-72805.herokuapp.com";
 const API = "https://api.open5e.com/spells/?search="
 
 export function signUp(userData) {
