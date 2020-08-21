@@ -23,8 +23,35 @@ export function signIn(userData) {
 export function searchSpells(name) {
     try {
         return request.get(`${API}${name}`)
-    } catch {
+    } catch(e) {
         // eslint-disable-next-line no-undef
         return { error: e.message }
     }
+}
+
+export function createFavorite(spellData) {
+    const token = localStorage.getItem('token');
+
+    return request.post(`${URL}/api/favorites`)
+        .send(spellData)
+        .set('Authorization', token);
+}
+
+export function fetchFavorites() {
+    const token = localStorage.getItem('token');
+
+    try{
+        return request
+            .get(`${URL}/api/favorites`)
+            .set('Authorization', token);
+    } catch(e) {
+        return { error: e.message }
+    }
+}
+
+export function deleteFavorite(id) {
+    const token = localStorage.getItem('token');
+
+    return request.delete(`${URL}/api/favorites/${id}`)
+        .set('Authorization', token);
 }
